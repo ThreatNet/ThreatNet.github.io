@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Threat Database</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Community Threat Database</h1>
+  <div id="searchSection">
+    <input type="text" id="searchInput" placeholder="Search threats...">
+    <button onclick="searchThreats()">Search</button>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Type</th>
+        <th>Details</th>
+        <th>Reported By</th>
+      </tr>
+    </thead>
+    <tbody id="threatTable"></tbody>
+  </table>
+  <script src="script.js"></script>
+</body>
+</html>
