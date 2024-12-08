@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const searchInput = document.getElementById('search-input');
-  const searchButton = document.getElementById('search-button');
-  const resultContainer = document.getElementById('result-container');
+  const searchInput = document.getElementById('searchInput'); // Corrected ID
+  const searchButton = document.getElementById('searchButton'); // Corrected ID
+  const resultContainer = document.getElementById('resultContainer'); // Corrected ID
   const REPO_URL = 'https://raw.githubusercontent.com/ThreatNet/ThreatNet.github.io/refs/heads/main/Threat_Data.json';
 
   let threatData = {};
