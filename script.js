@@ -1,85 +1,93 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const REPO_URL = 'https://raw.githubusercontent.com/ThreatNet/ThreatNet.github.io/refs/heads/main/Threat_Data.json';
-    const searchForm = document.getElementById("search-form");
-    const inputField = document.getElementById("search-input");
-    const resultDisplay = document.getElementById("results");
-    let threatDatabase = null;
+document.addEventListener('DOMContentLoaded', () => {
+  const searchInput = document.getElementById('search-input');
+  const searchButton = document.getElementById('search-button');
+  const resultContainer = document.getElementById('result-container');
+  const REPO_URL = 'https://raw.githubusercontent.com/ThreatNet/ThreatNet.github.io/refs/heads/main/Threat_Data.json';
 
-    // Fetch the threat database
-    async function fetchThreatDatabase() {
-        try {
-            const response = await fetch(REPO_URL);
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            threatDatabase = await response.json();
-            console.log("Threat database loaded successfully.");
-        } catch (error) {
-            console.error("Error fetching the threat database:", error);
-            resultDisplay.innerHTML = `<p class="error">Failed to load threat database. Please try again later.</p>`;
-        }
+  let threatData = {};
+
+  // Fetch the threat database from the URL
+  async function fetchThreatData() {
+    try {
+      const response = await fetch(REPO_URL);
+      if (!response.ok) {
+        throw new Error(`Error fetching data: ${response.statusText}`);
+      }
+      threatData = await response.json();
+      console.log('Threat database loaded successfully:', threatData);
+    } catch (error) {
+      console.error('Failed to load threat database:', error);
+    }
+  }
+
+  // Search through the database
+  function searchDatabase(query) {
+    if (!query || !threatData) {
+      resultContainer.innerHTML = '<p>Please enter a valid query or ensure the database is loaded.</p>';
+      return;
     }
 
-    // Search the threat database
-    function searchThreatDatabase(query) {
-        const results = [];
-        const categories = Object.keys(threatDatabase);
+    query = query.trim();
+    const categories = [
+      'malicious_wallets',
+      'suspicious_domains',
+      'phishing_sites',
+      'compromised_smart_contracts',
+      'malicious_ips',
+      'rogue_nodes',
+      'suspicious_api_usage',
+      'anomalous_transactions',
+    ];
 
-        categories.forEach(category => {
-            const items = threatDatabase[category];
-            items.forEach(item => {
-                for (const key in item) {
-                    if (item[key].toString().toLowerCase().includes(query.toLowerCase())) {
-                        results.push({ category, item });
-                        break;
-                    }
-                }
-            });
+    let resultFound = false;
+    resultContainer.innerHTML = '';
+
+    categories.forEach(category => {
+      if (threatData[category]) {
+        threatData[category].forEach(item => {
+          if (
+            item.address === query || 
+            item.domain === query || 
+            item.url === query || 
+            item.contract_address === query || 
+            item.ip_address === query || 
+            item.node_address === query || 
+            item.endpoint === query || 
+            item.tx_id === query
+          ) {
+            resultFound = true;
+            displayResult(category, item);
+          }
         });
-
-        return results;
-    }
-
-    // Display search results
-    function displayResults(results) {
-        if (results.length === 0) {
-            resultDisplay.innerHTML = `<p class="error">No results found for the provided input.</p>`;
-            return;
-        }
-
-        const resultHTML = results.map(({ category, item }) => {
-            const details = Object.entries(item)
-                .map(([key, value]) => `<li><strong>${key}:</strong> ${Array.isArray(value) ? value.join(', ') : value}</li>`)
-                .join("");
-            return `
-                <div class="result-card">
-                    <h3>${category.replace(/_/g, " ").toUpperCase()}</h3>
-                    <ul>${details}</ul>
-                </div>`;
-        }).join("");
-
-        resultDisplay.innerHTML = resultHTML;
-    }
-
-    // Handle search form submission
-    searchForm.addEventListener("submit", (event) => {
-        event.preventDefault();
-
-        const query = inputField.value.trim();
-        if (!query) {
-            resultDisplay.innerHTML = `<p class="error">Please enter a search term.</p>`;
-            return;
-        }
-
-        if (!threatDatabase) {
-            resultDisplay.innerHTML = `<p class="error">Threat database is not loaded yet. Please wait a moment and try again.</p>`;
-            return;
-        }
-
-        const results = searchThreatDatabase(query);
-        displayResults(results);
+      }
     });
 
-    // Fetch the database on load
-    fetchThreatDatabase();
+    if (!resultFound) {
+      resultContainer.innerHTML = '<p>No matching entries found in the database.</p>';
+    }
+  }
+
+  // Display the search result
+  function displayResult(category, data) {
+    const categoryLabel = category.replace(/_/g, ' ').toUpperCase();
+    const details = Object.entries(data)
+      .map(([key, value]) => `<li><strong>${key}</strong>: ${Array.isArray(value) ? value.join(', ') : value}</li>`)
+      .join('');
+    const resultHTML = `
+      <div class="result">
+        <h3>${categoryLabel}</h3>
+        <ul>${details}</ul>
+      </div>
+    `;
+    resultContainer.innerHTML += resultHTML;
+  }
+
+  // Event listener for search button
+  searchButton.addEventListener('click', () => {
+    const query = searchInput.value;
+    searchDatabase(query);
+  });
+
+  // Load threat data on page load
+  fetchThreatData();
 });
