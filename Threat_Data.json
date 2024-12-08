@@ -1,0 +1,86 @@
+{
+  "malicious_wallets": [
+    {
+      "address": "ALGO1234EXAMPLExyz1234ALGO",
+      "network": "Algorand",
+      "category": "Phishing",
+      "description": "Used in phishing attempts to gather private keys.",
+      "first_seen": "2024-10-15",
+      "last_seen": "2024-11-01",
+      "evidence": ["https://example.com/report123"]
+    }
+  ],
+  "suspicious_domains": [
+    {
+      "domain": "example-phishing.com",
+      "category": "Phishing",
+      "description": "Pretends to be an official wallet provider.",
+      "first_seen": "2024-10-10",
+      "last_seen": "2024-10-29",
+      "evidence": ["https://example.com/evidence-1"]
+    }
+  ],
+  "phishing_sites": [
+    {
+      "url": "https://scam-site.io",
+      "category": "Phishing",
+      "description": "Fake exchange platform targeting Algorand users.",
+      "first_seen": "2024-10-15",
+      "last_seen": "2024-10-28",
+      "evidence": ["https://example-phishing-report.com"]
+    }
+  ],
+  "compromised_smart_contracts": [
+    {
+      "contract_address": "ALGO_CONTRACT_ABC123xyz456",
+      "network": "Algorand",
+      "category": "Exploited",
+      "description": "Contract exploited by attackers to drain funds.",
+      "first_seen": "2024-10-01",
+      "last_seen": "2024-10-20",
+      "evidence": ["https://smartcontract-security.com/123"]
+    }
+  ],
+  "malicious_ips": [
+    {
+      "ip_address": "192.168.1.100",
+      "category": "Malware Distribution",
+      "description": "Associated with malware distribution.",
+      "first_seen": "2024-10-01",
+      "last_seen": "2024-11-03",
+      "geo_location": "US",
+      "evidence": ["https://malware-checker.com/ip/192.168.1.100"]
+    }
+  ],
+  "rogue_nodes": [
+    {
+      "node_address": "node1.algo.example",
+      "network": "Algorand",
+      "category": "Suspicious Activity",
+      "description": "Node is sending repeated spam transactions.",
+      "last_seen": "2024-11-05",
+      "evidence": ["https://threat-intel.com/rogue-node-report"]
+    }
+  ],
+  "suspicious_api_usage": [
+    {
+      "endpoint": "/v2/accounts/ALGO1234EXAMPLE",
+      "ip_address": "203.0.113.42",
+      "category": "Abuse",
+      "description": "Excessive API calls detected, possibly probing for vulnerabilities.",
+      "last_seen": "2024-11-04",
+      "evidence": ["https://api-abuse-log.com/123"]
+    }
+  ],
+  "anomalous_transactions": [
+    {
+      "tx_id": "TX1234EXAMPLExyz1234TX",
+      "network": "Algorand",
+      "category": "Laundering",
+      "description": "Transaction linked to known laundering activities.",
+      "amount": 100000,
+      "timestamp": "2024-11-02T12:00:00Z",
+      "evidence": ["https://transaction-reports.com/TX1234"]
+    }
+  ]
+}
