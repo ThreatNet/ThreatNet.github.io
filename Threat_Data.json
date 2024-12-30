@@ -7,7 +7,9 @@
       "description": "Used in phishing attempts to gather private keys.",
       "first_seen": "2024-10-15",
       "last_seen": "2024-11-01",
-      "evidence": ["https://example.com/report123"]
+      "evidence": ["https://example.com/report123"],
+      "votes": 8,
+      "voters": ["github_user3"]
     }
   ],
   "suspicious_domains": [
@@ -17,7 +19,9 @@
       "description": "Pretends to be an official wallet provider.",
       "first_seen": "2024-10-10",
       "last_seen": "2024-10-29",
-      "evidence": ["https://example.com/evidence-1"]
+      "evidence": ["https://example.com/evidence-1"],
+      "votes": 5,
+      "voters": ["github_user1", "github_user2"]
     }
   ],
   "phishing_sites": [
@@ -27,7 +31,9 @@
       "description": "Fake exchange platform targeting Algorand users.",
       "first_seen": "2024-10-15",
       "last_seen": "2024-10-28",
-      "evidence": ["https://example-phishing-report.com"]
+      "evidence": ["https://example-phishing-report.com"],
+      "votes": 12,
+      "voters": ["github_user3", "github_user4"]
     }
   ],
   "compromised_smart_contracts": [
@@ -38,7 +44,9 @@
       "description": "Contract exploited by attackers to drain funds.",
       "first_seen": "2024-10-01",
       "last_seen": "2024-10-20",
-      "evidence": ["https://smartcontract-security.com/123"]
+      "evidence": ["https://smartcontract-security.com/123"],
+      "votes": 3,
+      "voters": []
     }
   ],
   "malicious_ips": [
@@ -49,7 +57,9 @@
       "first_seen": "2024-10-01",
       "last_seen": "2024-11-03",
       "geo_location": "US",
-      "evidence": ["https://malware-checker.com/ip/192.168.1.100"]
+      "evidence": ["https://malware-checker.com/ip/192.168.1.100"],
+      "votes": 7,
+      "voters": ["github_user1"]
     }
   ],
   "rogue_nodes": [
@@ -59,7 +69,9 @@
       "category": "Suspicious Activity",
       "description": "Node is sending repeated spam transactions.",
       "last_seen": "2024-11-05",
-      "evidence": ["https://threat-intel.com/rogue-node-report"]
+      "evidence": ["https://threat-intel.com/rogue-node-report"],
+      "votes": 6,
+      "voters": ["github_user2"]
     }
   ],
   "suspicious_api_usage": [
@@ -69,7 +81,9 @@
       "category": "Abuse",
       "description": "Excessive API calls detected, possibly probing for vulnerabilities.",
       "last_seen": "2024-11-04",
-      "evidence": ["https://api-abuse-log.com/123"]
+      "evidence": ["https://api-abuse-log.com/123"],
+      "votes": 2,
+      "voters": []
     }
   ],
   "anomalous_transactions": [
@@ -80,7 +94,9 @@
       "description": "Transaction linked to known laundering activities.",
       "amount": 100000,
       "timestamp": "2024-11-02T12:00:00Z",
-      "evidence": ["https://transaction-reports.com/TX1234"]
+      "evidence": ["https://transaction-reports.com/TX1234"],
+      "votes": 9,
+      "voters": ["github_user5", "github_user6"]
     }
   ]
 }
